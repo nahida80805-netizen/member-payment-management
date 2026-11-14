@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>সদস্য জমার হিসাব</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--purple:#7c3aed;--green:#059669;--orange:#d97706;--ink:#172033;--muted:#64748b;--line:#e5eaf3;--surface:#fff;--bg:#f3f6ff}
+*{box-sizing:border-box}body{margin:0;padding:24px 16px 48px;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 5% 0%,#dbeafe 0,transparent 28%),radial-gradient(circle at 100% 10%,#ede9fe 0,transparent 26%),var(--bg)}
+.wrap{max-width:1120px;margin:auto}.hero{padding:28px;border-radius:26px;color:white;background:linear-gradient(120deg,#172554 0%,#1d4ed8 58%,#6d28d9 100%);box-shadow:0 18px 45px #1e3a8a2b;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid #ffffff25;border-radius:50%;right:-70px;top:-105px;box-shadow:0 0 0 28px #ffffff0b,0 0 0 58px #ffffff09}.brand{font-size:13px;letter-spacing:.16em;font-weight:800;color:#bfdbfe}.hero h1{font-size:clamp(25px,5vw,38px);margin:10px 0 8px}.hero p{color:#dbeafe;margin:0;max-width:620px}.hero .hero-tag{display:inline-flex;margin-top:18px;padding:7px 12px;border:1px solid #ffffff38;background:#ffffff16;border-radius:99px;font-size:12px}
+.card{background:var(--surface);border:1px solid #e8edf7;border-radius:20px;padding:22px;margin:18px 0;box-shadow:0 8px 28px #23345b0b}.card h2{margin:0 0 8px;font-size:20px}.muted{color:var(--muted);font-size:14px;line-height:1.6}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.stat{border-radius:18px;padding:18px;color:white;min-height:118px;box-shadow:0 8px 20px #1e293b10}.stat:nth-child(1){background:linear-gradient(135deg,#2563eb,#4f46e5)}.stat:nth-child(2){background:linear-gradient(135deg,#059669,#10b981)}.stat:nth-child(3){background:linear-gradient(135deg,#d97706,#f59e0b)}.stat small{display:block;color:#ffffffd9;font-size:12px;font-weight:700}.stat strong{display:block;font-size:clamp(19px,3vw,27px);margin-top:12px;overflow-wrap:anywhere}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}input,select{padding:13px 14px;border:1px solid #d8e0ee;border-radius:12px;font-size:15px;background:#fff;color:var(--ink);min-width:150px;flex:1;outline:none}input:focus,select:focus{border-color:#638cf5;box-shadow:0 0 0 3px #2563eb18}button{border:0;border-radius:12px;padding:13px 17px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 5px 12px #2563eb24;transition:transform .15s,filter .15s}button:hover{filter:brightness(1.06);transform:translateY(-1px)}button:focus-visible{outline:3px solid #93c5fd;outline-offset:2px}.danger{background:linear-gradient(135deg,#dc2626,#e11d48);box-shadow:0 5px 12px #dc262624}.member{padding:14px;border:1px solid var(--line);border-radius:14px;margin:10px 0;background:#fbfcff}.member button{padding:8px 11px;font-size:12px}.summary{font-size:15px;margin:9px 0;color:var(--ink)}.paid{color:#047857;font-weight:800}.pending{color:#b45309;font-weight:800}.grand{font-size:22px;font-weight:850;color:#1d4ed8;margin:12px 0}.hidden{display:none!important}.section-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}.section-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#eaf0ff;color:#315bd6;font-size:18px}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin-top:12px}table{width:100%;border-collapse:collapse;min-width:440px}th,td{padding:12px 14px;border-bottom:1px solid #edf0f6;text-align:left;font-size:14px}th{background:#f5f7ff;color:#52617c;font-size:12px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}.note{padding:12px 14px;border-radius:12px;background:#eff6ff;color:#1e40af;font-size:13px;line-height:1.55}.footer{text-align:center;color:#8290a8;font-size:12px;padding:10px}.status-pill{display:inline-block;border-radius:99px;padding:5px 10px;background:#ecfdf5;color:#047857;font-size:12px;font-weight:800}
+@media(max-width:700px){body{padding:12px 10px 30px}.hero{padding:22px 18px;border-radius:20px}.card{padding:17px;border-radius:17px}.stats{grid-template-columns:1fr;gap:10px}.stat{min-height:95px;padding:15px}.stat strong{margin-top:7px}.row>*{width:100%}.row button{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brand">MEMBER WALLET · GROUP FINANCE</div>
+    <h1>সদস্য জমার হিসাব</h1>
+    <p>১১ জন সদস্যের মাসভিত্তিক জমা, পেমেন্ট স্ট্যাটাস ও লোনের হিসাব—এক জায়গায়।</p>
+    <span class="hero-tag">● বাংলাদেশি টাকা (BDT ৳) · Dashboard Preview</span>
+  </header>
+  <div class="card" style="border-left:5px solid #d97706;background:#fffbeb">
+    <strong style="color:#92400e">সেটআপ নোট</strong>
+    <p class="muted" style="margin:6px 0 0;color:#78350f">এটি আপনার BDT Dashboard-এর প্রাথমিক সংস্করণ। Firebase Authentication ও Firestore সংযোগের তথ্য রাখা আছে, তবে সদস্যদের নিজস্ব Gmail Registration, সদস্যভিত্তিক অ্যাকাউন্ট যাচাই এবং নিরাপদ Firestore Rules এখনো সম্পূর্ণভাবে সেটআপ ও পরীক্ষা করা হয়নি। তাই বাস্তব টাকা/সদস্যের তথ্য দেওয়ার আগে নিরাপত্তা সেটআপ শেষ করতে হবে।</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><small>মোট Paid জমা</small><strong id="heroPaid">৳0.00</strong></div>
+    <div class="stat"><small>মোট Pending</small><strong id="heroPending">৳0.00</strong></div>
+    <div class="stat"><small>মোট সদস্য</small><strong>১১ জন</strong></div>
+  </div>
+  <div class="card">
+    <div class="section-head"><div class="section-icon">▦</div><h2>গ্রুপের হিসাব</h2></div>
+    <p class="muted">সদস্যদের হিসাব দেখা যাবে। টাকা যোগ বা মুছতে অনুমোদিত Admin লগইন প্রয়োজন।</p>
+    <div id="overallResult"></div>
+    <p class="muted">নাম নির্বাচন করে সদস্যের মাসভিত্তিক জমা ও Pending status দেখুন।</p>
+    <div class="row">
+      <select id="memberSelect"></select>
+      <button onclick="showMember()">সদস্যের হিসাব দেখুন</button>
+    </div>
+    <div id="memberResult"></div>
+  </div>
+
+  <div class="card">
+    <div class="section-head"><div class="section-icon">🔐</div><h2>অ্যাডমিন লগইন</h2></div>
+    <p class="muted">শুধু অনুমোদিত অ্যাডমিন ইমেইল ও পাসওয়ার্ড দিয়ে লগইন করতে পারবেন।</p>
+    <div class="row">
+      <input id="adminEmail" type="email" autocomplete="username" placeholder="Admin email">
+      <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Admin password">
+      <button id="loginButton" type="button">লগইন</button>
+      <button id="logoutButton" type="button" class="hidden">লগআউট</button>
+    </div>
+    <p id="authStatus" class="muted">অ্যাডমিন লগইন করা নেই।</p>
+  </div>
+
+  <div class="card hidden" id="adminPanel">
+    <div class="section-head"><div class="section-icon">＋</div><h2>অ্যাডমিন প্যানেল · টাকা যোগ করুন</h2></div>
+    <p class="muted">অ্যাডমিন লগইন করা থাকলেই টাকা যোগ/মুছতে পারবেন। তথ্য Firebase Firestore-এ সংরক্ষিত হবে।</p>
+    <div class="row">
+      <select id="adminMember"></select>
+      <input id="month" type="month">
+      <input id="amount" type="number" min="0" step="0.01" placeholder="টাকার পরিমাণ (৳)">
+      <select id="status">
+        <option value="Paid">Paid — জমা হয়েছে</option>
+        <option value="Pending">Pending — এখনো জমা হয়নি</option>
+      </select>
+      <button onclick="addPayment()">এন্ট্রি যোগ করুন</button>
+    </div>
+    <div id="adminList"></div>
+  </div>
+
+  <div class="card">
+    <div class="section-head"><div class="section-icon">৳</div><h2>Loan Management</h2></div>
+    <p class="muted">সর্বোচ্চ Loan: ৳১,০০,০০০। গ্রুপের Paid জমা ৳১,০০,০০০ হলে আবেদন করার শর্ত পূরণ হবে। এই প্রাথমিক সংস্করণে Loan আবেদন Admin লগইন থেকে পরীক্ষা করা যাবে; সদস্যদের নিজস্ব Login থেকে আবেদন চালু করতে আলাদা নিরাপদ অনুমতি ও Firestore Rules প্রয়োজন।</p>
+    <div class="row">
+      <select id="loanMember"></select>
+      <input id="loanAmount" type="number" min="1" max="100000" step="1" placeholder="Loan-এর পরিমাণ (৳)">
+      <button onclick="submitLoan()">Loan আবেদন করুন</button>
+    </div>
+    <div id="loanList"></div>
+  </div>
+  <div class="footer">Member Wallet · BDT Edition</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+const firebaseConfig = {
+ apiKey: "AIzaSyDwpmk4din-TO3zU4rPOaxtnMfldyyDyvw",
+ authDomain: "payment-system-d7850.firebaseapp.com",
+ projectId: "payment-system-d7850",
+ storageBucket: "payment-system-d7850.firebasestorage.app",
+ messagingSenderId: "140003791347",
+ appId: "1:140003791347:web:c531ae05999e280d958286"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// Must match the UID of the admin account created in Firebase Authentication.
+const ADMIN_UID = "r9exjgIbOcbmA5ikQKNtnseihHJ2";
+let currentUser = null;
+function isAdmin(){ return !!currentUser && currentUser.uid === ADMIN_UID; }
+function updateAdminUI(){
+  const panel = document.getElementById("adminPanel");
+  const status = document.getElementById("authStatus");
+  const loginButton = document.getElementById("loginButton");
+  const logoutButton = document.getElementById("logoutButton");
+  if (isAdmin()) {
+    status.textContent = "অ্যাডমিন হিসেবে লগইন করা হয়েছে।";
+    panel.classList.remove("hidden");
+    loginButton.classList.add("hidden");
+    logoutButton.classList.remove("hidden");
+  } else {
+    status.textContent = currentUser ? "এই অ্যাকাউন্টটি অ্যাডমিন নয়।" : "অ্যাডমিন লগইন করা নেই।";
+    panel.classList.add("hidden");
+    loginButton.classList.remove("hidden");
+    logoutButton.classList.add("hidden");
+  }
+}
+document.getElementById("loginButton").addEventListener("click", async () => {
+  const email = document.getElementById("adminEmail").value.trim();
+  const password = document.getElementById("adminPassword").value;
+  if (!email || !password) { alert("Admin email ও password দিন।"); return; }
+  try {
+    const credential = await signInWithEmailAndPassword(auth, email, password);
+    if (credential.user.uid !== ADMIN_UID) {
+      await signOut(auth);
+      alert("এই অ্যাকাউন্টটি অনুমোদিত Admin নয়।");
+    }
+  } catch (e) {
+    console.error(e);
+    alert("লগইন হয়নি। Email/password এবং Firebase Authentication সেটিংস পরীক্ষা করুন।");
+  }
+});
+document.getElementById("logoutButton").addEventListener("click", async () => {
+  try { await signOut(auth); } catch(e) { console.error(e); }
+});
+onAuthStateChanged(auth, user => {
+  currentUser = user;
+  updateAdminUI();
+});
+const dataRef = doc(db, "appData", "main");
+const members = ["SOJIB","SHAMIM","SHAMIM 2","SABBIR","ZIHAD","MOMIN","SANTO","RIYAZ","SHAWON","RIYAZ 2","Shaporan"];
+let payments = Object.fromEntries(members.map(m => [m, []]));
+let loans = [], ready = false;
+const LOAN_LIMIT = 100000;
+function money(n){return "৳"+Number(n).toLocaleString("en-BD",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function showError(e){console.error(e);alert("Firebase-এ তথ্য লোড/সংরক্ষণ হয়নি। Firestore Rules ও ইন্টারনেট সংযোগ পরীক্ষা করুন।");}
+async function saveAll(){if(!ready)return;try{await setDoc(dataRef,{payments,loans,updatedAt:new Date().toISOString()});}catch(e){showError(e);}}
+async function loadData(){
+ try{const snap=await getDoc(dataRef);if(snap.exists()){const d=snap.data();members.forEach(m=>payments[m]=Array.isArray(d.payments?.[m])?d.payments[m]:[]);loans=Array.isArray(d.loans)?d.loans:[];}ready=true;renderAll();}
+ catch(e){showError(e);document.getElementById("overallResult").innerHTML='<p class="pending">Firebase সংযোগ ব্যর্থ। Firestore Rules সেট করা আছে কি না দেখুন।</p>';}
+}
+function fillSelects(){const o=members.map(m=>`<option value="${m}">${m}</option>`).join("");document.getElementById("memberSelect").innerHTML=o;document.getElementById("adminMember").innerHTML=o;document.getElementById("loanMember").innerHTML=o;}
+function showMember(){
+ const m=document.getElementById("memberSelect").value, rows=[...(payments[m]||[])].sort((a,b)=>a.month.localeCompare(b.month));
+ const paid=rows.filter(r=>(r.status||"Paid")==="Paid").reduce((s,r)=>s+Number(r.amount),0), pending=rows.filter(r=>(r.status||"Paid")==="Pending").reduce((s,r)=>s+Number(r.amount),0);
+ let h=`<h3>${m}</h3>`;if(!rows.length)h+="<p>এখনও কোনো জমার তথ্য নেই।</p>";else h+=`<table><tr><th>মাস</th><th>টাকা</th><th>Status</th></tr>`+rows.map(r=>{let st=r.status||"Paid";return `<tr><td>${r.month}</td><td>${money(r.amount)}</td><td class="${st==="Pending"?"pending":"paid"}">${st}</td></tr>`;}).join("")+"</table>";
+ h+=`<div class="summary">জমা হয়েছে: <b>${money(paid)}</b></div><div class="summary pending">Pending: ${money(pending)}</div>`;document.getElementById("memberResult").innerHTML=h;renderOverall();
+}
+function checkAdminPin(){if(!isAdmin()){alert("এই কাজের জন্য Admin হিসেবে লগইন করুন।");return false;}return true;}
+async function addPayment(){
+ if(!ready){alert("ডেটাবেস লোড হওয়া পর্যন্ত অপেক্ষা করুন।");return;}if(!checkAdminPin())return;
+ const m=document.getElementById("adminMember").value, month=document.getElementById("month").value, amount=Number(document.getElementById("amount").value), status=document.getElementById("status").value;
+ if(!month||!Number.isFinite(amount)||amount<0||(status==="Paid"&&amount===0)){alert("সদস্য, মাস এবং সঠিক টাকার পরিমাণ দিন।");return;}
+ const old=payments[m].find(r=>r.month===month);if(old){old.amount=amount;old.status=status;}else payments[m].push({month,amount,status});
+ await saveAll();document.getElementById("amount").value="";renderAll();
+}
+async function removePayment(m,month){if(!checkAdminPin())return;payments[m]=payments[m].filter(r=>r.month!==month);await saveAll();renderAll();}
+function renderAdmin(){
+ document.getElementById("adminList").innerHTML=members.map(m=>{let rows=[...(payments[m]||[])].sort((a,b)=>a.month.localeCompare(b.month));if(!rows.length)return `<div class="member"><b>${m}</b> — কোনো এন্ট্রি নেই</div>`;return `<div class="member"><b>${m}</b>`+rows.map(r=>{let st=r.status||"Paid";return `<div>${r.month}: ${money(r.amount)} — <span class="${st==="Pending"?"pending":"paid"}">${st}</span> <button class="danger" style="padding:6px 9px;font-size:12px" data-member="${m}" data-month="${r.month}">মুছুন</button></div>`;}).join("")+"</div>";}).join("");
+ document.querySelectorAll("#adminList button[data-member]").forEach(b=>b.addEventListener("click",()=>removePayment(b.dataset.member,b.dataset.month)));
+}
+function renderOverall(){let paid=0,pending=0,pc=0,qc=0;members.forEach(m=>(payments[m]||[]).forEach(r=>{let a=Number(r.amount);if((r.status||"Paid")==="Pending"){pending+=a;qc++;}else{paid+=a;pc++;}}));document.getElementById("heroPaid").textContent=money(paid);
+ document.getElementById("heroPending").textContent=money(pending);
+ document.getElementById("overallResult").innerHTML=`<div class="grand">মোট জমা হয়েছে: ${money(paid)}</div><div class="summary">Paid এন্ট্রি: ${pc} টি</div><div class="summary pending">মোট Pending: ${money(pending)} (${qc} টি)</div>`;}
+async function submitLoan(){
+ if(!ready){alert("ডেটাবেস লোড হওয়া পর্যন্ত অপেক্ষা করুন।");return;}
+ if(!isAdmin()){alert("এই সংস্করণে Loan আবেদন জমা দিতে Admin লগইন দরকার। সদস্যদের জন্য আলাদা নিরাপদ Loan submission ব্যবস্থা পরের ধাপে করতে হবে।");return;}
+ const member=document.getElementById("loanMember").value,amount=Number(document.getElementById("loanAmount").value);
+ const total=members.reduce((t,m)=>t+(payments[m]||[]).filter(r=>(r.status||"Paid")==="Paid").reduce((s,r)=>s+Number(r.amount),0),0);
+ if(total<LOAN_LIMIT){alert(`অ্যাকাউন্টে মোট জমা এখন ৳${total.toLocaleString("en-US")}। Loan নিতে হলে ৳১,০০,০০০ জমা হতে হবে। আরও ৳${(LOAN_LIMIT-total).toLocaleString("en-US")} প্রয়োজন।`);return;}
+ if(loans.some(x=>x.status==="Pending"||x.status==="Accepted")){alert("একটি Loan Pending বা Accepted থাকা অবস্থায় নতুন আবেদন করা যাবে না।");return;}
+ if(!Number.isFinite(amount)||amount<1||amount>LOAN_LIMIT){alert("Loan-এর পরিমাণ ১ থেকে ১,০০,০০০ টাকার মধ্যে দিন।");return;}
+ loans.push({id:Date.now(),member,amount,status:"Pending"});await saveAll();document.getElementById("loanAmount").value="";renderLoans();
+}
+async function adminLoanAction(id,action){if(!checkAdminPin())return;const l=loans.find(x=>x.id===id);if(!l)return;l.status=action==="accept"?"Accepted":"Rejected";await saveAll();renderLoans();}
+function renderLoans(){const el=document.getElementById("loanList");if(!loans.length){el.innerHTML="<p>এখনও কোনো Loan আবেদন নেই।</p>";return;}el.innerHTML=loans.slice().reverse().map(l=>{const a=l.status==="Pending"?`<button data-loan="${l.id}" data-action="accept">Accept</button> <button class="danger" data-loan="${l.id}" data-action="reject">Reject</button>`:"";return `<div class="member"><b>${l.member}</b> — ${Number(l.amount).toLocaleString("en-US")} ৳ — <span class="${l.status==="Pending"?"pending":"paid"}">${l.status}</span> ${a}</div>`;}).join("");el.querySelectorAll("button[data-loan]").forEach(b=>b.addEventListener("click",()=>adminLoanAction(Number(b.dataset.loan),b.dataset.action)));}
+function renderAll(){renderAdmin();showMember();renderLoans();}
+// Inline buttons call these explicitly exposed handlers.
+window.showMember = showMember;
+window.addPayment = addPayment;
+window.submitLoan = submitLoan;
+fillSelects();loadData();
+</script>
+</body>
+</html>
